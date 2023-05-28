@@ -49,6 +49,8 @@ class QuicErrorCode(IntEnum):
     KEY_UPDATE_ERROR = 0xE
     AEAD_LIMIT_REACHED = 0xF
     CRYPTO_ERROR = 0x100
+    #multipath quic extention
+    MP_PROTOCOL_VIOLATION = 0xba01
 
 
 class QuicProtocolVersion(IntEnum):
@@ -310,6 +312,8 @@ PARAMS = {
     # extensions
     0x0020: ("max_datagram_frame_size", int),
     0x0C37: ("quantum_readiness", bytes),
+    #multipath quic extention
+    0x0f739bbc1b666d04: ("enable_multipath",bytes)
 }
 
 
@@ -431,7 +435,10 @@ class QuicFrameType(IntEnum):
     HANDSHAKE_DONE = 0x1E
     DATAGRAM = 0x30
     DATAGRAM_WITH_LENGTH = 0x31
-
+    #multipath quic extention
+    ACK_MP = 0xbaba00
+    PATH_ABANDON = 0xbaba05
+    PATH_STATUS = 0xbaba06
 
 NON_ACK_ELICITING_FRAME_TYPES = frozenset(
     [
