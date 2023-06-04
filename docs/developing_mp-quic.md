@@ -1,0 +1,6 @@
+# MPQUIC開発進捗
+
+6/4
+enable_multipath パラメータの準備
+クライアントにenable_multipaのトランスポートパラメータを有効にしたものを準備した
+enable_multipathが有効になっていると言って現在は挙動が変わることはない

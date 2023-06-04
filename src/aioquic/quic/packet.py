@@ -289,7 +289,7 @@ class QuicTransportParameters:
     retry_source_connection_id: Optional[bytes] = None
     max_datagram_frame_size: Optional[int] = None
     quantum_readiness: Optional[bytes] = None
-
+    enable_multipath: Optional[bytes] = None
 
 PARAMS = {
     0x00: ("original_destination_connection_id", bytes),

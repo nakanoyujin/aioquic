@@ -287,6 +287,7 @@ class QuicConnection:
         self._local_ack_delay_exponent = 3
         self._local_active_connection_id_limit = 8
         self._local_initial_source_connection_id = self._host_cids[0].cid
+        self._local_enable_multipath = configuration.enable_multipath
         self._local_max_data = Limit(
             frame_type=QuicFrameType.MAX_DATA,
             name="max_data",
@@ -2507,6 +2508,7 @@ class QuicConnection:
             if value is not None:
                 setattr(self, "_remote_" + param, value)
 
+    #トランスポートパラメータの用意
     def _serialize_transport_parameters(self) -> bytes:
         quic_transport_parameters = QuicTransportParameters(
             ack_delay_exponent=self._local_ack_delay_exponent,
@@ -2525,6 +2527,10 @@ class QuicConnection:
             if self._configuration.quantum_readiness_test
             else None,
             stateless_reset_token=self._host_cids[0].stateless_reset_token,
+            #三項演算子
+            enable_multipath=self._local_enable_multipath
+            if self._configuration.enable_multipath
+            else None,
         )
         if not self._is_client:
             quic_transport_parameters.original_destination_connection_id = (

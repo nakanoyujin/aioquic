@@ -114,3 +114,8 @@ You can then run the client with a specific query:
 .. _Google Public DNS: https://developers.google.com/speed/public-dns
 .. _--enable-experimental-web-platform-features: https://peter.sh/experiments/chromium-command-line-switches/#enable-experimental-web-platform-features
 .. _--ignore-certificate-errors-spki-list: https://peter.sh/experiments/chromium-command-line-switches/#ignore-certificate-errors-spki-list
+
+/Applications % sudo ./Google\ Chrome.app/Contents/MacOS/Google\ Chrome     --enable-experimental-web-platform-features \ 
+    --ignore-certificate-errors-spki-list=BSQJ0jkQ7wwhR7KvPZ+DSNk2XTZ/MS6xCbo9qu++VdQ= \
+    --origin-to-force-quic-on=localhost:4433 \
+    https://localhost:4433/

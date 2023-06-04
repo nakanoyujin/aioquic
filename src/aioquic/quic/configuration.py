@@ -85,6 +85,10 @@ class QuicConfiguration:
     max_datagram_frame_size: Optional[int] = None
     private_key: Any = None
     quantum_readiness_test: bool = False
+
+    #multipath quic
+    enable_multipath: bytes = None
+    
     supported_versions: List[int] = field(
         default_factory=lambda: [
             QuicProtocolVersion.VERSION_1,

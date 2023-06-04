@@ -1,3 +1,4 @@
+#connectメソッドで呼び出される
 import asyncio
 import ipaddress
 import socket
@@ -29,26 +30,26 @@ async def connect(
     local_port: int = 0,
 ) -> AsyncGenerator[QuicConnectionProtocol, None]:
     """
-    Connect to a QUIC server at the given `host` and `port`.
+与えられた `host` と `port` にある QUIC サーバーに接続します。
 
-    :meth:`connect()` returns an awaitable. Awaiting it yields a
-    :class:`~aioquic.asyncio.QuicConnectionProtocol` which can be used to
-    create streams.
+    :meth:`connect()` は待ち受けを返します。待ち受けにすると
+    class:`~aioquic.asyncio.QuicConnectionProtocol` を生成し、ストリームを作成するために使用することができます。
+    ストリームを作成するために使用できます。
 
-    :func:`connect` also accepts the following optional arguments:
+    func:`connect` は、以下のオプションの引数も受け付けます：
 
-    * ``configuration`` is a :class:`~aioquic.quic.configuration.QuicConfiguration`
-      configuration object.
-    * ``create_protocol`` allows customizing the :class:`~asyncio.Protocol` that
-      manages the connection. It should be a callable or class accepting the same
-      arguments as :class:`~aioquic.asyncio.QuicConnectionProtocol` and returning
-      an instance of :class:`~aioquic.asyncio.QuicConnectionProtocol` or a subclass.
-    * ``session_ticket_handler`` is a callback which is invoked by the TLS
-      engine when a new session ticket is received.
-    * ``stream_handler`` is a callback which is invoked whenever a stream is
-      created. It must accept two arguments: a :class:`asyncio.StreamReader`
-      and a :class:`asyncio.StreamWriter`.
-    * ``local_port`` is the UDP port number that this client wants to bind.
+    * ``configuration`` は :class:`~aioquic.quic.configuration.QuicConfiguration` です。
+      設定オブジェクトです。
+    * ``create_protocol`` は接続を管理する :class:`~asyncio.Protocol` をカスタマイズすることができます。
+      接続を管理する :class:`~asyncio.Protocol` をカスタマイズすることができます。これは :class:`~asyncio.Protocol` と同じ引数を受け取る callable または class である必要があります。
+      クラス:`~asyncio.QuicConnectionProtocol`と同じ引数を受け取り、 :クラス:`~asyncio.Protocol`のインスタンスを返します。
+      クラス:`~aioquic.asyncio.QuicConnectionProtocol` またはそのサブクラスのインスタンスを返します。
+    * セッションチケットの受信時にTLSエンジンによって呼び出されるコールバックです。
+      エンジンによって呼び出されるコールバックです。
+    * ストリームが作成されるたびに呼び出されるコールバックです。
+      ストリームが作成されるたびに呼び出されるコールバックです。このコールバックは2つの引数を受け取る必要があります。
+      と :class:`asyncio.StreamWriter` の 2 つの引数を受け取る必要があります。
+    * ``local_port`` は、このクライアントがバインドしたい UDP ポート番号です。
     """
     loop = asyncio.get_event_loop()
     local_host = "::"
